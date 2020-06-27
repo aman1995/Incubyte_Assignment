@@ -1,12 +1,15 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
     private String delimiter = "[,\n]";
     private String delimiterEnd = "\n";
     private String newDelimiter = "[,]+";
+    private String regexPattern = "\\[(.*?)\\]";
 
     public int Add(String numbers){
 
@@ -14,7 +17,7 @@ public class StringCalculator {
             return 0;
 
         if(numbers.startsWith("//")){
-            numbers = preProcessTheString(delimiter,numbers);
+            numbers = preProcessTheString(delimiter,numbers.substring(2));
             delimiter = newDelimiter;
         }
 
@@ -40,11 +43,16 @@ public class StringCalculator {
     }
 
     private String preProcessTheString(String delimiter,  String numbers) {
-        delimiter = numbers.substring(2,numbers.indexOf(delimiterEnd));
-        numbers = numbers.substring(numbers.indexOf(delimiterEnd)+1);
-        numbers = numbers.replaceAll(delimiter, ",");
+        String numbersArray[] =  numbers.split(delimiterEnd,2);
 
-        return numbers;
+        regexPattern = (numbersArray[0].length()==1) ? numbersArray[0] : regexPattern;
+
+        Pattern pattern = Pattern.compile(regexPattern);
+        Matcher m = pattern.matcher(numbersArray[0]);
+        while (m.find())
+            numbersArray[1] = numbersArray[1].replaceAll(m.group(), ",");
+
+        return numbers = numbersArray[1];
     }
 
     private int stringToNumber(String number){
@@ -57,4 +65,3 @@ public class StringCalculator {
         }
     }
 }
-

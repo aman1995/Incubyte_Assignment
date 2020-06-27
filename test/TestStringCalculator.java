@@ -70,4 +70,14 @@ public class TestStringCalculator {
     public void delimiter_can_have_any_length() {
         assertEquals(stringCalculator.Add("//[***]\n1***2***3"), 6);
     }
+
+    @Test
+    public void multiple_delimiter_allowed() {
+        assertEquals(stringCalculator.Add("//[*][%]\n1*2%3"), 6);
+    }
+
+    @Test
+    public void multiple_delimiter_any_length_allowed() {
+        assertEquals(stringCalculator.Add("//[***][%%]\n1***2%%3"), 6);
+    }
 }
