@@ -1,7 +1,9 @@
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TestStringCalculator {
 
@@ -35,6 +37,11 @@ public class TestStringCalculator {
     @Test
     public void n_numbers_comma_and_newline_delimited_sum() {
         assertEquals(stringCalculator.Add("1,2\n3,4\n5"), 15);
+    }
+
+    @Test
+    public void n_numbers_new_delimiter_delimited_sum() {
+        assertEquals(stringCalculator.Add("//;\n1;2;3;4"), 10);
     }
 
 }

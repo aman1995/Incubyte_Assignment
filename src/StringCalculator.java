@@ -1,20 +1,24 @@
 
 public class StringCalculator {
 
-    private final String delimiter = ",|\n";
+    private String delimiter = "[,\n]";
+    private String delimiterEnd = "\n";
 
     public int Add(String numbers) {
 
         if (numbers.isEmpty())
             return 0;
 
-        String numbersArray[] = numbers.split(delimiter);
+        if (numbers.startsWith("//")) {
+            delimiter = numbers.charAt(2) + "";
+            numbers = numbers.substring(numbers.indexOf(delimiterEnd) + 1);
+        }
 
-        int result = addAll(numbersArray);
-        return result;
+        return addAll(numbers);
     }
 
-    private int addAll(String numbersArray[]) {
+    private int addAll(String numbers) {
+        String numbersArray[] = numbers.split(delimiter);
 
         int result = 0;
         for (String number : numbersArray) {
