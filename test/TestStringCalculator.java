@@ -1,9 +1,7 @@
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class TestStringCalculator {
 
@@ -35,12 +33,12 @@ public class TestStringCalculator {
         assertEquals(stringCalculator.Add("1,2,3,4,5"), 15);
     }
     @Test
-    public void n_numbers_comma_and_newline_delimited_sum() {
+    public void comma_and_newline_delimited_sum() {
         assertEquals(stringCalculator.Add("1,2\n3,4\n5"), 15);
     }
 
     @Test
-    public void n_numbers_new_delimiter_delimited_sum() {
+    public void new_delimiter_delimited_sum() {
         assertEquals(stringCalculator.Add("//;\n1;2;3;4"), 10);
     }
 
@@ -66,5 +64,10 @@ public class TestStringCalculator {
     @Test
     public void should_ignore_numbers_greater_than_1000() {
         assertEquals(stringCalculator.Add("1000,1,3,1002,4"), 1008);
+    }
+
+    @Test
+    public void delimiter_can_have_any_length() {
+        assertEquals(stringCalculator.Add("//[***]\n1***2***3"), 6);
     }
 }
