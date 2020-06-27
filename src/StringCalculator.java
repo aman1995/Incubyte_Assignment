@@ -1,22 +1,28 @@
+
 public class StringCalculator {
 
-    public int Add(String numbers) {
+    public int Add(String numbers){
 
-        if (numbers.isEmpty())
+        if(numbers.isEmpty())
             return 0;
 
         String numbersArray[] = numbers.split(",");
 
-        if (numbersArray.length == 1)
-            return stringToNumber(numbersArray[0]);
-
-
-        else return (stringToNumber(numbersArray[0]) +
-                stringToNumber(numbersArray[1]));
+        int result=addAll(numbersArray);
+        return result;
     }
 
-    private int stringToNumber(String number) {
+    private int addAll(String numbersArray[]){
+
+        int result = 0;
+        for(String number : numbersArray){
+            result+=stringToNumber(number);
+        }
+
+        return result;
+    }
+
+    private int stringToNumber(String number){
         return Integer.parseInt(number);
     }
-
 }

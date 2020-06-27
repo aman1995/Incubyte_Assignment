@@ -1,14 +1,15 @@
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class TestStringCalculator {
+
 
     private StringCalculator stringCalculator;
 
     @Before
-    public void init() {
+    public void init(){
         stringCalculator = new StringCalculator();
     }
 
@@ -25,5 +26,10 @@ public class TestStringCalculator {
     @Test
     public void two_numbers_sum_returned() {
         assertEquals(stringCalculator.Add("75,23"), 98);
+    }
+
+    @Test
+    public void n_numbers_comma_delimited_sum() {
+        assertEquals(stringCalculator.Add("1,2,3,4,5"), 15);
     }
 }
