@@ -44,4 +44,22 @@ public class TestStringCalculator {
         assertEquals(stringCalculator.Add("//;\n1;2;3;4"), 10);
     }
 
+    @Test(expected=Exception.class)
+    public void negative_numbers_exception_thrown() {
+        stringCalculator.Add("3,-1,3,4");
+    }
+
+    @Test
+    public void negative_numbers_should_be_shown() {
+
+        try
+        {
+            stringCalculator.Add("3,-1,3,-4");
+        }
+        catch(RuntimeException re)
+        {
+            String message = "Negatives not allowed: [-1, -4]";
+            assertEquals(message, re.getMessage());
+        }
+    }
 }
