@@ -62,4 +62,9 @@ public class TestStringCalculator {
             assertEquals(message, re.getMessage());
         }
     }
+
+    @Test
+    public void should_ignore_numbers_greater_than_1000() {
+        assertEquals(stringCalculator.Add("1000,1,3,1002,4"), 1008);
+    }
 }
