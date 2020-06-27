@@ -32,4 +32,9 @@ public class TestStringCalculator {
     public void n_numbers_comma_delimited_sum() {
         assertEquals(stringCalculator.Add("1,2,3,4,5"), 15);
     }
+    @Test
+    public void n_numbers_comma_and_newline_delimited_sum() {
+        assertEquals(stringCalculator.Add("1,2\n3,4\n5"), 15);
+    }
+
 }
